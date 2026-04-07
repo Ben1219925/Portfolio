@@ -1,0 +1,40 @@
+clock x
+
+location Green {
+    invariant x <= 55
+}
+
+location Yellow {
+    invariant x <= 5
+}
+
+location Red {
+    initial
+    invariant x <= 60
+}
+
+
+transition {
+    source Green
+    target Yellow
+    guard  x == 55
+    action prepare_to_stop
+    reset  x
+}
+
+transition {
+    source Yellow
+    target Red
+    guard  x == 5
+    action stop
+    reset  x
+}
+
+transition {
+    source Red
+    target Green
+    guard  x == 60
+    action go
+    reset  x
+}
+

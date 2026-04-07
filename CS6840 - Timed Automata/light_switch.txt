@@ -1,0 +1,23 @@
+clock x
+
+location Off {
+    initial
+}
+
+location On {
+    invariant x <= 10
+}
+
+transition {
+    source Off
+    target On
+    action press
+    reset  x
+}
+
+transition {
+    source On
+    target Off
+    guard  x == 10
+    action timeout
+}
